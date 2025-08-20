@@ -4,7 +4,7 @@
 
 SineGen is a lightweight web app powered by SolidJS that leverages the Web Audio API to generate sine waves with customizable frequencies. You can choose to mute or tweak the volume of each individual wave or add new waves/remove existing waves.
 
-Check it out here: <https://arneshrc.github.io/ArneshRC/SineGen>
+Check it out here: <https://arneshrc.github.io/SineGen>
 
 ## Running Locally
 
