@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@theme {
+	--color-base00: #f8f8f8;
+	--color-base01: #e8e8e8;
+	--color-base02: #d8d8d8;
+	--color-base03: #b8b8b8;
+	--color-base04: #585858;
+	--color-base05: #383838;
+	--color-base06: #282828;
+	--color-base07: #181818;
+	--color-base08: #ab4642;
+	--color-base09: #dc9656;
+	--color-base0A: #f79a0e;
+	--color-base0B: #538947;
+	--color-base0C: #4b8093;
+	--color-base0D: #7cafc2;
+	--color-base0E: #96609e;
+	--color-base0F: #a16946;
+}
+
+.slider {
+	@apply appearance-none cursor-pointer bg-transparent;
+	--track: var(--color-base02);
+	--fill: var(--wave-color);
+	--thumb-border: var(--color-base05);
+	--thumb-focus: var(--color-base04);
+	--pct: calc((var(--value) - var(--min)) * 100% / (var(--max) - var(--min)));
+
+	&:focus {
+		outline: none;
+	}
+
+	&::-webkit-slider-runnable-track {
+		height: 0.5rem;
+		border-radius: 0.25rem;
+		background: linear-gradient(
+			to right,
+			var(--fill) 0%,
+			var(--fill) var(--pct),
+			var(--track) var(--pct),
+			var(--track) 100%
+		);
+	}
+
+	&::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		height: 1rem;
+		width: 1rem;
+		margin-top: -0.25rem;
+		background: var(--fill);
+		border-radius: 50%;
+		border: 1px solid var(--thumb-border);
+		cursor: pointer;
+	}
+
+	&:focus::-webkit-slider-thumb {
+		outline: 3px solid var(--thumb-focus);
+		outline-offset: 2px;
+	}
+
+	&::-moz-range-track {
+		height: 0.5rem;
+		background: var(--track);
+		border-radius: 0.25rem;
+	}
+
+	&::-moz-range-progress {
+		height: 0.5rem;
+		background: var(--fill);
+		border-radius: 0.25rem;
+	}
+
+	&::-moz-range-thumb {
+		height: 1rem;
+		width: 1rem;
+		background: var(--fill);
+		border: 1px solid var(--thumb-border);
+		border-radius: 50%;
+		cursor: pointer;
+	}
+
+	&:focus::-moz-range-thumb {
+		outline: 3px solid var(--thumb-focus);
+		outline-offset: 2px;
+	}
+}
+
+.note-menu {
+	transform-origin: 50% 0%;
+	scale: 0;
+	opacity: 0;
+	transition:
+		transform 220ms cubic-bezier(0.2, 0.9, 0.2, 1),
+		left 220ms ease,
+		top 220ms ease,
+		opacity 160ms linear,
+		scale 220ms cubic-bezier(0.2, 0.9, 0.2, 1);
+	will-change: scale, transform, left, top, opacity;
+
+	width: 12rem;
+	height: 8rem;
+
+	background: rgba(232, 232, 232, 0.98);
+	border-radius: 0.5rem;
+	padding: 0.75rem;
+	border: 1px solid rgba(216, 216, 216, 0.95);
+	box-shadow: 0 8px 24px rgba(24, 24, 24, 0.08);
+}
+
+.note-menu.open {
+	scale: 1;
+	opacity: 1;
+}
+
+.note-menu.closing {
+	scale: 0;
+	opacity: 0;
+}
+
+.note-menu-item {
+	opacity: 0;
+	transform: translateY(8px);
+	transition:
+		opacity 140ms linear 180ms,
+		transform 160ms linear 180ms;
+}
+
+.note-menu.open .note-menu-item {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.note-menu.closing .note-menu-item {
+	opacity: 0;
+	transform: translateY(6px);
+	transition:
+		opacity 90ms linear,
+		transform 90ms linear;
+}
+
+.note-menu-item:focus {
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(124, 175, 194, 0.12);
+}
+
+.note-menu-item {
+	min-height: 40px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
